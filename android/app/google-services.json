@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1031795587438",
+    "project_id": "hurdl-chat",
+    "storage_bucket": "hurdl-chat.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031795587438:android:f1087fac38ec006afd297f",
+        "android_client_info": {
+          "package_name": "com.development.hurdlchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy1FWBp6xZ1tfMFXbs7YRJhCQScmkauag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
