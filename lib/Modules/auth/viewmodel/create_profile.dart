@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hurdl_chat/Modules/Home/View/home_view.dart';
 import 'package:hurdl_chat/Modules/auth/service/auth_service.dart';
+import 'package:hurdl_chat/Modules/root/view/root_view.dart';
 import 'package:hurdl_chat/common/theme/custom_toast.dart';
 import 'package:hurdl_chat/utils/loader.dart';
 
@@ -50,7 +51,7 @@ class CreateProfileViewModel extends GetxController with AuthService {
       );
       hideOpenDialog(context: context);
       if (isUserCreate) {
-        Get.offAll(() => const HomeView());
+         Get.offAll(() => const RootView());
       }
     } catch (e) {
       hideOpenDialog(context: context);

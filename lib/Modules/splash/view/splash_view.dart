@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hurdl_chat/Modules/Home/View/home_view.dart';
 import 'package:hurdl_chat/Modules/auth/view/signup_view.dart';
+import 'package:hurdl_chat/Modules/root/view/root_view.dart';
 import 'package:hurdl_chat/db%20and%20cache/cache.dart';
 import '../../auth/view/login_view.dart';
 import '../../../common/theme/assets.dart';
@@ -33,7 +34,7 @@ class _SplashViewState extends State<SplashView> {
     String userID = await CacheHandle.getUID();
 
     if (userID.isNotEmpty) {
-      Get.offAll(() => const HomeView());
+      Get.offAll(() => const RootView());
     } else {
       setState(() {
         isShowingButton = true;
@@ -75,7 +76,7 @@ class _SplashViewState extends State<SplashView> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.offAll(() =>  LoginView());
+                          Get.offAll(() => LoginView());
                         },
                         child: const Customtext(
                           title: "Login",
