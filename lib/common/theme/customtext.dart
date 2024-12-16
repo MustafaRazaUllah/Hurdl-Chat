@@ -9,6 +9,7 @@ class Customtext extends StatelessWidget {
   final FontWeight? fontWeight;
   final TextOverflow? overflow;
   final TextAlign? textAlign;
+  final int? maxLines;
 
   const Customtext({
     super.key,
@@ -18,6 +19,7 @@ class Customtext extends StatelessWidget {
     this.fontWeight,
     this.overflow,
     this.textAlign,
+    this.maxLines,
   });
 
   @override
@@ -26,6 +28,7 @@ class Customtext extends StatelessWidget {
       title,
       overflow: overflow,
       textAlign: textAlign,
+      maxLines: maxLines,
       style: GoogleFonts.poppins(
         color: color ?? AppColors.white,
         fontSize: fontSize ?? 14,

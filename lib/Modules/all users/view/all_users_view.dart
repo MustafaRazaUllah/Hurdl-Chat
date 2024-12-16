@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hurdl_chat/Modules/all%20users/viewmodel/alluser_viewmodel.dart';
 import 'package:hurdl_chat/common/theme/color.dart';
 import 'package:hurdl_chat/common/theme/custom_textfield.dart';
 import 'package:hurdl_chat/common/theme/customtext.dart';
 
-class AllUsersView extends StatelessWidget {
+class AllUsersView extends StatefulWidget {
   const AllUsersView({super.key});
+
+  @override
+  State<AllUsersView> createState() => _AllUsersViewState();
+}
+
+class _AllUsersViewState extends State<AllUsersView> {
+  final AlluserViewmodel _controller = Get.put(AlluserViewmodel());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller.getAllUsers();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,36 +64,62 @@ class AllUsersView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    color: Colors.transparent,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: AppColors.primaryColor.withOpacity(0.1),
+            Obx(
+              () => Expanded(
+                child: _controller.isLoading.value
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                      ))
+                    : _controller.allUsers.isNotEmpty
+                        ? ListView.builder(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            itemCount: _controller.allUsers.length,
+                            itemBuilder: (context, index) {
+                              var user = _controller.allUsers[index];
+                              return Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                color: Colors.transparent,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 50,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: AppColors.primaryColor
+                                            .withOpacity(0.1),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        child: Image.network(
+                                          "https://eu.ui-avatars.com/api/?name=${user.firstName}+${user.lastName}",
+                                        ),
+                                      ),
+                                      // "https://avatar.iran.liara.run/public/boy?username=${user.firstName}"),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Customtext(
+                                        title:
+                                            "${user.firstName} ${user.lastName}",
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          )
+                        : const Center(
+                            child: Customtext(
+                              title: "UserNotFound",
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Customtext(
-                            title: "User Name $index",
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
               ),
             ),
           ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hurdl_chat/Modules/Home/View/home_view.dart';
 import 'package:hurdl_chat/Modules/profile/view/profile_view.dart';
+import 'package:hurdl_chat/Modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:hurdl_chat/common/theme/color.dart';
 
 class RootView extends StatefulWidget {
@@ -11,11 +13,19 @@ class RootView extends StatefulWidget {
 }
 
 class _RootViewState extends State<RootView> {
+  ProfileViewmodel _profileViewmodel = Get.put(ProfileViewmodel());
   int selectedIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+_profileViewmodel.getProfile();
+  }
 
   var viewList = [
     const HomeView(),
-    const ProfileView(),
+     ProfileView(),
   ];
 
   @override
