@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hurdl_chat/Modules/Home/Viewmodal/home_viewmodel.dart';
 import 'package:hurdl_chat/Modules/all%20users/view/all_users_view.dart';
 import 'package:hurdl_chat/Modules/auth/view/login_view.dart';
 import 'package:hurdl_chat/common/theme/color.dart';
@@ -8,7 +9,9 @@ import 'package:hurdl_chat/common/theme/customtext.dart';
 import 'package:hurdl_chat/db%20and%20cache/cache.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
+
+  final _homeController = Get.find<HomeViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,32 +54,44 @@ class HomeView extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           // Listview Builder
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Customtext(
-                    title: "User Name $index",
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  subtitle: const Customtext(
-                    title: "Last Message",
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  leading: const CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage("assets/images/user.png"),
-                  ),
-                  trailing: const Customtext(
-                    title: "12:00",
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                );
-              },
+          Obx(
+            () => Expanded(
+              child: _homeController.isLoading.value
+                  ? Center(
+                      child: CircularProgressIndicator(
+                      color: AppColors.primaryColor,
+                    ))
+                  : _homeController.allChats.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: _homeController.allChats.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Customtext(
+                                title: "User Name $index",
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              subtitle: const Customtext(
+                                title: "Last Message",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              leading: const CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
+                                    AssetImage("assets/images/user.png"),
+                              ),
+                              trailing: const Customtext(
+                                title: "12:00",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            );
+                          },
+                        )
+                      : Center(
+                          child: Customtext(title: "Chat Not Found."),
+                        ),
             ),
           ),
         ],

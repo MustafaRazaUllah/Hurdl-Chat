@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hurdl_chat/Modules/all%20users/viewmodel/alluser_viewmodel.dart';
+import 'package:hurdl_chat/Modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:hurdl_chat/common/theme/color.dart';
 import 'package:hurdl_chat/common/theme/custom_textfield.dart';
 import 'package:hurdl_chat/common/theme/customtext.dart';
@@ -14,6 +15,7 @@ class AllUsersView extends StatefulWidget {
 
 class _AllUsersViewState extends State<AllUsersView> {
   final AlluserViewmodel _controller = Get.put(AlluserViewmodel());
+  final _profileViewmodel = Get.find<ProfileViewmodel>();
 
   @override
   void initState() {
@@ -77,40 +79,50 @@ class _AllUsersViewState extends State<AllUsersView> {
                             itemCount: _controller.allUsers.length,
                             itemBuilder: (context, index) {
                               var user = _controller.allUsers[index];
-                              return Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                color: Colors.transparent,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        color: AppColors.primaryColor
-                                            .withOpacity(0.1),
+                              return GestureDetector(
+                                onTap: () {
+                                  print("Hello  ${user.toFirestore()}");
+                                  _controller.onInitiateChat(
+                                    context: context,
+                                    currentUser: _profileViewmodel.userData.value,
+                                    otherUser: user,
+                                  );
+                                },
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  color: Colors.transparent,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 50,
+                                        width: 50,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          color: AppColors.primaryColor
+                                              .withOpacity(0.1),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          child: Image.network(
+                                            "https://eu.ui-avatars.com/api/?name=${user.firstName}+${user.lastName}",
+                                          ),
+                                        ),
+                                        // "https://avatar.iran.liara.run/public/boy?username=${user.firstName}"),
                                       ),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        child: Image.network(
-                                          "https://eu.ui-avatars.com/api/?name=${user.firstName}+${user.lastName}",
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: Customtext(
+                                          title:
+                                              "${user.firstName} ${user.lastName}",
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
-                                      // "https://avatar.iran.liara.run/public/boy?username=${user.firstName}"),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      child: Customtext(
-                                        title:
-                                            "${user.firstName} ${user.lastName}",
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               );
                             },
