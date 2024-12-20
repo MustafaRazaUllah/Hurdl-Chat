@@ -3,15 +3,19 @@ import 'package:get/get.dart';
 import 'package:hurdl_chat/Modules/Home/Viewmodal/home_viewmodel.dart';
 import 'package:hurdl_chat/Modules/all%20users/view/all_users_view.dart';
 import 'package:hurdl_chat/Modules/auth/view/login_view.dart';
+import 'package:hurdl_chat/Modules/chat/view/chatview.dart';
+import 'package:hurdl_chat/Modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:hurdl_chat/common/theme/color.dart';
 import 'package:hurdl_chat/common/theme/custom_textfield.dart';
 import 'package:hurdl_chat/common/theme/customtext.dart';
 import 'package:hurdl_chat/db%20and%20cache/cache.dart';
+import 'package:intl/intl.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
 
   final _homeController = Get.find<HomeViewModel>();
+  final _profileViewmodel = Get.put(ProfileViewmodel());
 
   @override
   Widget build(BuildContext context) {
@@ -65,26 +69,52 @@ class HomeView extends StatelessWidget {
                       ? ListView.builder(
                           itemCount: _homeController.allChats.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Customtext(
-                                title: "User Name $index",
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              subtitle: const Customtext(
-                                title: "Last Message",
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              leading: const CircleAvatar(
-                                radius: 30,
-                                backgroundImage:
-                                    AssetImage("assets/images/user.png"),
-                              ),
-                              trailing: const Customtext(
-                                title: "12:00",
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
+                            var chat = _homeController.allChats[index];
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(
+                                  () => ChatView(
+                                    chat: chat,
+                                    otherUser: _profileViewmodel
+                                                .userData.value.userID !=
+                                            chat.participants[0].userID
+                                        ? chat.participants[0]
+                                        : chat.participants[1],
+                                  ),
+                                );
+                              },
+                              child: ListTile(
+                                title: Customtext(
+                                  title: _profileViewmodel
+                                              .userData.value.userID !=
+                                          chat.participants[0].userID
+                                      ? "${chat.participants[0].firstName} ${chat.participants[0].lastName}"
+                                      : "${chat.participants[1].firstName} ${chat.participants[1].lastName}",
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                subtitle: Customtext(
+                                  title: chat.lastMessage,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                leading: CircleAvatar(
+                                  radius: 30,
+                                  backgroundImage:
+                                      // Image.network("src")
+                                      NetworkImage(
+                                    "https://eu.ui-avatars.com/api/?name=${_profileViewmodel.userData.value.userID != chat.participants[0].userID ? "${chat.participants[0].firstName}+${chat.participants[0].lastName}" : "${chat.participants[1].firstName}+${chat.participants[1].lastName}"}",
+                                  ),
+                                ),
+                                trailing: Customtext(
+                                  title: DateFormat("hh:mm:a").format(
+                                    DateTime.fromMillisecondsSinceEpoch(
+                                      chat.createdAt * 1000,
+                                    ),
+                                  ),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             );
                           },

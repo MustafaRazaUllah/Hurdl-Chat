@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ad1108d-d95c-45e0-bc6b-550eab3882d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/Modules/Home/Viewmodal/home_viewmodel.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Modules/Home/model/chatmodel.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Modules/Home/service/home_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Modules/chat/view/chatview.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hurdl_chat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hurdl_chat.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Modules/Home/View/home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/Home/View/home_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/all users/service/alluser_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/all users/service/alluser_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/all users/view/all_users_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/all users/view/all_users_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/all users/viewmodel/alluser_viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/all users/viewmodel/alluser_viewmodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/profile/model/usermodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/profile/model/usermodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/profile/viewmodel/profile_viewmodel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/profile/viewmodel/profile_viewmodel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Modules/root/view/root_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Modules/root/view/root_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +34,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "MustafaRazaUllah"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MustafaRazaUllah/Hurdl-Chat.git",
+    "accountId": "4ed9e14b-f329-4913-8b0a-b02bcf1c2446"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2qOPrEshd9COHi8pIpk9RS0uLRy" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" />
@@ -58,23 +62,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Flutter.main.dart.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "io.flutter.reload.alreadyRun": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/mustafaraza/Documents/lacture/Session 3/Flutter/Hurdl-Chat",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mustafaraza/Documents/lacture/Session 3/Flutter/Hurdl-Chat&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
